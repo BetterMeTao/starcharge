@@ -13,7 +13,7 @@ const proHash = {
   }
 };
 
-const project = proHash.Hth;
+const project = proHash.starCharge;
 
 // 配置项目名称
 const projectName = project.name;
