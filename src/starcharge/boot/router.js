@@ -3,15 +3,22 @@ import ChargeCarRank from '../pages/chargeCarRank';
 import ApplyInvoice from '../pages/applyInvoice';
 import InvoiceInfo from '../pages/invoiceInfo';
 import NoFound from '../pages/notFound';
-
+import TimeLine from '../pages/activity/timeline/timeline';
+import FullPageSlide from '../pages/activity/timeline/full-page-slide'
 const proPath = [
   {
     // 一级路由配置
     path: '/',
-    component: App,
+    name: 'timeline',
+    component: TimeLine,
     // 相关子路由配置
     children: [
       // 二级路由为空重定向到指定页
+      {
+        path: '/',
+        name: 'full-page-slide',
+        component: FullPageSlide
+      },
       {
         path: '',
         redirect: '/applyInvoice'
