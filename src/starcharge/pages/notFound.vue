@@ -23,15 +23,15 @@ export default {
     display flex
     justify-content center
     align-items center
-    font-size rpx(30)
+    font-size $fontsize-lm
     color #fff
     background-color #5e7382
     z-index 999
     .icon-cup
-      font-size rpx(180)
+      font-size $fontsize-big-x
       text-align center
       color #fff
       margin-bottom rpx(40)
     .nf-text
-      font-size rpx(28)
+      font-size $fontsize-medium
 </style>

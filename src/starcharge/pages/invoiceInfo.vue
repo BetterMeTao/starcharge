@@ -238,7 +238,7 @@
   @import '../assets/css/mixin.styl';
   .header-tip
     background-color #fedfc2
-    font-size rpx(28)
+    font-size $fontsize-medium
     color #f97624
     padding rpx(16) rpx(30)
     line-height rpx(48)
@@ -246,7 +246,7 @@
     & h3
       font-weight bold
       & p
-        font-size rpx(26)
+        font-size $fontsize-xm
     & i
       position absolute
       right rpx(20)
@@ -255,7 +255,7 @@
     .tip-center
       text-align center
   .jump-tip
-    font-size rpx(28)
+    font-size $fontsize-medium
     padding rpx(28) rpx(10) rpx(80) rpx(32)
     color #999
     position relative

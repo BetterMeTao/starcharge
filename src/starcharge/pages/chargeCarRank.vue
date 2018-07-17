@@ -102,7 +102,7 @@ export default {
     width 100%
     height 100%
     & ul
-      font-size rpx(28)
+      font-size $fontsize-medium
       & li
         display flex
         align-items center

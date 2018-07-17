@@ -1,3 +1,4 @@
+@import "./variable.styl"
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -82,9 +83,93 @@ li
   width 5px
   background-color rgba(125, 125, 125, 0.7)
   -webkit-border-radius 6px
-
-  @font-face
+@font-face
   font-family: 'GrilledCheeseBTNToasted'
   src: local('GrilledCheeseBTNToasted'), url('/PeachFlowerFv/assets/fonts/GrilledCheeseBTNToasted.woff') format('font-woff')
   font-style: normal
   font-weight: normal
+@font-face
+  font-family 'QuartzMdm';
+  src: url('/src/starcharge/assets/fonts/Quartz-Mdm.eot');
+  src: url("/src/starcharge/assets/fonts/Quartz-Mdm.eot?#") format('embedded-opentype'),
+    url('/src/starcharge/assets/fonts/Quartz-Mdm.woff') format('woff'),
+    url('/src/starcharge/assets/fonts/Quartz-Mdm.ttf') format('truetype'),
+    url('/src/starcharge/assets/fonts/Quartz-Mdm.svg#QuartzMdm') format('svg');
+  font-weight normal
+  font-style normal
+.border-top-1px, .border-right-1px, .border-bottom-1px, .border-left-1px
+    position: relative
+    &:before, &:after
+        content: ""
+        display: block
+        position: absolute
+        transform-origin: 0 0
+
+.border-top-1px
+  &:before
+    border-top: 1px solid $color-row-line
+    left: 0
+    top: 0
+    width: 100%
+    transform-origin: 0 top
+
+.border-right-1px
+  &:after
+    border-right: 1px solid $color-col-line
+    top: 0
+    right: 0
+    height: 100%
+    transform-origin: right 0
+
+.border-bottom-1px
+  &:after
+    border-bottom: 1px solid $color-row-line
+    left: 0
+    bottom: 0
+    width: 100%
+    transform-origin: 0 bottom
+
+.border-left-1px
+  &:before
+    border-left: 1px solid $color-col-line
+    top: 0
+    left: 0
+    height: 100%
+    transform-origin: left 0
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2)
+  .border-top-1px
+    &:before
+      width: 200%
+      transform: scale(.5) translateZ(0)
+  .border-right-1px
+    &:after
+      height: 200%
+      transform: scale(.5) translateZ(0)
+  .border-bottom-1px
+    &:after
+      width: 200%
+      transform: scale(.5) translateZ(0)
+  .border-left-1px
+    &:before
+      height: 200%
+      transform: scale(.5) translateZ(0)
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3)
+  .border-top-1px
+    &:before
+      width: 300%
+      transform: scale(.333) translateZ(0)
+  .border-right-1px
+    &:after
+      height: 300%
+      transform: scale(.333) translateZ(0)
+  .border-bottom-1px
+    &:after
+      width: 300%
+      transform: scale(.333) translateZ(0)
+  .border-left-1px
+    &:before
+      height: 300%
+      transform: scale(.333) translateZ(0)
+

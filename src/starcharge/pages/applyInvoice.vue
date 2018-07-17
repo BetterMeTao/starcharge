@@ -451,7 +451,7 @@
     background-color #fff
     .panel-tip
       padding 0 rpx(30)
-      font-size rpx(26)
+      font-size $fontsize-xm
       text-align justify
       line-height rpx(38)
       padding-bottom rpx(10)
@@ -459,7 +459,7 @@
         color #f97624
 
   .footer-tip
-    font-size rpx(26)
+    font-size $fontsize-xm
     color #ccc
     padding rpx(20) rpx(30)
 </style>
