@@ -1,6 +1,5 @@
 <template>
-    <div style="box-sizing: border-box;height: 100%;">
-      <Header></Header>
+    <div style="height: 100%;">
       <div class="content">
           <keep-alive>
             <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -23,5 +22,5 @@
 <style rel="stylesheet/stylus" lang="stylus">
   @import "../../../assets/css/index.styl";
   .content
-    height "calc(100% - %s)" % rpx(528)
+    height 100%
 </style>

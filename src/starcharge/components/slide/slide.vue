@@ -29,6 +29,10 @@
               type: Boolean,
               default: false
             },
+            allowEmit: {
+              type: Boolean,
+              default: false
+            },
             loop: {
                 type: Boolean,
                 default: true
@@ -154,13 +158,12 @@
                 this.$refs.slideGroup.style.width = width + 'px'
             },
             _initSlide () {
-                console.log(this.threshold)
                 this.slide = new BScroll(this.$refs.slide, {
                     scrollX: true,
-                    scrollY: false,
+                    scrollY: true,
                     momentum: false,
                     // freeScroll: true,
-                  // eventPassthrough: 'vertical',
+                    // eventPassthrough: 'vertical',
                     snap: {
                         loop: this.loop,
                         threshold: this.threshold,
@@ -171,7 +174,7 @@
                     click: this.click
                 })
 
-                this.slide.on('scrollEnd', this._onScrollEnd)
+                this.slide.on('scrollEnd', this._onScrollEnd);
 
                 this.slide.on('touchEnd', () => {
                     if (this.autoPlay) {
@@ -186,8 +189,10 @@
                 })
             },
             _onScrollEnd () {
-                let pageIndex = this.slide.getCurrentPage().pageX
-                this.currentPageIndex = pageIndex
+                let pageIndex = this.slide.getCurrentPage().pageX;
+                this.currentPageIndex = pageIndex;
+                if (this.allowEmit) this.$root.eventBus.$emit('scrollEnd', this.currentPageIndex);
+                // console.log('1111111111', this.currentPageIndex)
                 if (this.autoPlay) {
                     this._play()
                 }
@@ -232,8 +237,7 @@
             .slide-item
                 float: left
                 box-sizing: border-box
-                overflow: auto
-                overflow-x hidden
+                overflow: hidden
                 text-align: center
                 a
                     display: block

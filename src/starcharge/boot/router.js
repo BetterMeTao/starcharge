@@ -9,7 +9,6 @@ const proPath = [
   {
     // 一级路由配置
     path: '/',
-    name: 'timeline',
     component: TimeLine,
     // 相关子路由配置
     children: [

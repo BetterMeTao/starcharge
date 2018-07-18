@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header></Header>
         <div class="activity-content">
           <h3>百万红包雨狂欢来袭</h3>
           <div class="yellow-bg">
@@ -31,8 +32,7 @@
 <style rel="stylesheet/stylus" lang="stylus">
   @import '../../../assets/css/mixin.styl';
 .activity-content
-  /*height "calc(100% - %s)" % rpx(528)*/
-  height 100%
+  height "calc(100% - %s)" % rpx(528)
   background-image url("../../../assets/img/hongbaobg.png")
   background-size 100% 100%
   background-color #543ad0

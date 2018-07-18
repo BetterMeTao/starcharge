@@ -1,6 +1,6 @@
 <template>
-  <div class="scrollwrap" ref="scrollV">
-    <slot name="defaultScroll" v-if="leftarr && leftarr.length || noAsync"></slot>
+  <div class="" ref="scrollV" style="height: 100%;">
+    <slot name="defaultScroll"></slot>
     <slot name="scrolllist"></slot>
     <empty :content="noData" v-if="leftarr && leftarr.length === 0 && !noAsync"></empty>
     <div class="loadarea" v-show="loadvisible">

@@ -1,6 +1,6 @@
 <template>
     <div v-if="items.length" class="full-page-slide-wrapper">
-        <slide ref="slide" :autoPlay="false" :loop="false">
+        <slide ref="slide" :autoPlay="false" :loop="false" :allowEmit="true">
           <Bonus></Bonus>
           <Raffle></Raffle>
             <!--<div v-for="(item, index) in items" :key="index">-->
@@ -75,6 +75,9 @@
             },
             getStyle (index) {
                 return `background-image:url(${this.items[index]})`
+            },
+            scrollEnd (pageIndex) {
+              console.log('1111111111', pageIndex)
             }
         }
     }

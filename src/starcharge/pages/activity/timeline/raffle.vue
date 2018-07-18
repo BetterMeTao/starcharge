@@ -1,67 +1,70 @@
 <template>
-  <div>
-    <div class="raffle-item">
-      <p class="title">疯狂828、全民免费充!</p>
-      <div class="flower-box">
-        <p>a、活动期间，星星充电APP用户享受<span class="important">0元充电</span>；</p>
-        <p>b、活动不限支付方式、不限充电次数、不限个人或企业身份；</p>
-      </div>
-    </div>
-    <div class="raffle-item qipao">
-      <p class="title">充值狂欢，返的比充的多!</p>
-      <div class="flower-box">
-        <p class="info">通过星星充电APP充电满<span class="important">10度</span>即可参与充值返券活动；</p>
-        <div class="btn-box">
-          <p class="ruleBtn">充值规则</p>
-          <p class="tip">每用户仅限一次</p>
+<div>
+  <Scroll ref="scroll" :probeType="3" :listenScroll="true" @scroll="fixTimeline">
+      <Header :fixed="fixedLine" :pos="posY"></Header>
+      <div class="raffle-item">
+        <p class="title">疯狂828、全民免费充!</p>
+        <div class="flower-box">
+          <p>a、活动期间，星星充电APP用户享受<span class="important">0元充电</span>；</p>
+          <p>b、活动不限支付方式、不限充电次数、不限个人或企业身份；</p>
         </div>
-        <div class="flex-between">
-          <div class="hongbao">
-            <div class="price flex-column-between"><p>充值188元返</p><p class="num">188</p><p>抵用券</p></div>
-            <div class="pay">去充值</div>
-          </div>
-          <div class="hongbao">
-            <div class="price flex-column-between"><p>充值1188元返</p><p class="num fourNum">1288</p><p>抵用券</p></div>
-            <div class="pay">去充值</div>
-          </div>
-          <div class="hongbao">
-            <div class="price flex-column-between"><p>充值2388元返</p><p class="num fourNum">2588</p><p>抵用券</p></div>
-            <div class="pay">去充值</div>
-          </div>
-        </div>
-        <p class="text-tip">（仅当天充值有效，返还抵用券限自营电站使用）</p>
       </div>
-    </div>
-    <div class="raffle-item qipao-bottom">
-      <p class="title">中奖百分百，汽车开回家!</p>
-      <div class="flower-box no-pad" >
-        <div class="padBox">
-          <p class="info">活动期间，使用星星充电APP充电，8月28日当天完成一次充电即可参与抽奖。</p>
+      <div class="raffle-item qipao">
+        <p class="title">充值狂欢，返的比充的多!</p>
+        <div class="flower-box">
+          <p class="info">通过星星充电APP充电满<span class="important">10度</span>即可参与充值返券活动；</p>
           <div class="btn-box">
-            <p class="Quartz-Mdm">00:23:12</p>
-            <p class="ruleBtn">抽奖规则</p>
+            <p class="ruleBtn">充值规则</p>
+            <p class="tip">每用户仅限一次</p>
           </div>
-          <div class="scratch-prize flex-column-between">
-            <p class="tip">幸运大抽奖 汽车开回家</p>
-            <div class="guajiang-btn">点击刮奖</div>
-          </div>
-        </div>
-        <div class="swiper-gift ">
-          <img src="../../../assets/img/prev.png" alt="" class="prev"  @click="$refs.smSlide.prev()">
-          <slide ref="smSlide" :showDot="false" :autoPlay="false" :showPrev="true" :showNext="true">
-            <div v-for="(slideItem,slideindex) in slideData" :key="slideindex" class="flex-between">
-              <div class="giftBox flex-column-between" v-for="(giftItem,giftIndex) in slideItem" :key="giftIndex">
-                <p>{{ giftItem.text }}</p>
-                <img :src="giftItem.picUrl" alt="">
-              </div>
+          <div class="flex-between">
+            <div class="hongbao">
+              <div class="price flex-column-between"><p>充值188元返</p><p class="num">188</p><p>抵用券</p></div>
+              <div class="pay">去充值</div>
             </div>
-          </slide>
-          <img src="../../../assets/img/qianjin.png" alt="" class="next"  @click="$refs.smSlide.next()">
+            <div class="hongbao">
+              <div class="price flex-column-between"><p>充值1188元返</p><p class="num fourNum">1288</p><p>抵用券</p></div>
+              <div class="pay">去充值</div>
+            </div>
+            <div class="hongbao">
+              <div class="price flex-column-between"><p>充值2388元返</p><p class="num fourNum">2588</p><p>抵用券</p></div>
+              <div class="pay">去充值</div>
+            </div>
+          </div>
+          <p class="text-tip">（仅当天充值有效，返还抵用券限自营电站使用）</p>
         </div>
       </div>
-      <Footer></Footer>
-    </div>
-  </div>
+      <div class="raffle-item qipao-bottom">
+        <p class="title">中奖百分百，汽车开回家!</p>
+        <div class="flower-box no-pad" >
+          <div class="padBox">
+            <p class="info">活动期间，使用星星充电APP充电，8月28日当天完成一次充电即可参与抽奖。</p>
+            <div class="btn-box">
+              <p class="Quartz-Mdm">00:23:12</p>
+              <p class="ruleBtn">抽奖规则</p>
+            </div>
+            <div class="scratch-prize flex-column-between">
+              <p class="tip">幸运大抽奖 汽车开回家</p>
+              <div class="guajiang-btn">点击刮奖</div>
+            </div>
+          </div>
+          <div class="swiper-gift ">
+            <img src="../../../assets/img/prev.png" alt="" class="prev"  @click="$refs.smSlide.prev()">
+            <slide ref="smSlide" :showDot="false" :autoPlay="false" :showPrev="true" :showNext="true" :allowEmit="false">
+              <div v-for="(slideItem,slideindex) in slideData" :key="slideindex" class="flex-between">
+                <div class="giftBox flex-column-between" v-for="(giftItem,giftIndex) in slideItem" :key="giftIndex">
+                  <p>{{ giftItem.text }}</p>
+                  <img :src="giftItem.picUrl" alt="">
+                </div>
+              </div>
+            </slide>
+            <img src="../../../assets/img/qianjin.png" alt="" class="next"  @click="$refs.smSlide.next()">
+          </div>
+        </div>
+        <Footer></Footer>
+      </div>
+  </Scroll>
+</div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -69,10 +72,14 @@
   import Footer from '../components/footer'
   import Slide from '../../../components/slide/slide.vue'
   import beiqi from '../../../assets/img/beiqi.png'
+  import list from '../../../components/scroll/list'
+  import Scroll from '../../../components/scrollNew/scroll'
   export default {
     name: 'raffle',
     data () {
       return {
+        fixedLine: false,
+        posY: 0,
         slideData: [
           [{picUrl: beiqi, text: '北汽EV300'},
           {picUrl: beiqi, text: '充电桩'},
@@ -86,9 +93,18 @@
     components: {
       Header,
       Slide,
-      Footer
+      Footer,
+      list,
+      Scroll
+    },
+    mounted () {
+
     },
     methods: {
+      fixTimeline (pos) {
+          this.fixedLine = pos.y <= -194;
+          this.posY = pos.y <= -194 ? pos.y : 0
+      }
       // getStyle (index) {
       //   return `background-image:url(${this.slideData[index].picUrl})`
       // }

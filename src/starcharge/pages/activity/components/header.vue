@@ -6,19 +6,21 @@
         <div class="gift" :class="{'animated':animate ,'bounce':animate}"><img src="../../../assets/img/liping.png" alt="我的奖品"></div>
       </div>
     </div>
-    <div class="time-line">
+    <div class="time-line" :class="{'fixedLine':this.fixed }" :style="{top:-this.pos+'px'}">
       <div class="flex-center">
         <div class="line" style="width: 15%;">
           <span class="text" >08.15-08.19</span>
-          <img src="../../../assets/img/hongbao.png" alt="红包活动" >
+          <img src="../../../assets/img/hongbao.png" alt="红包活动" v-if="pageIndex == 0">
+          <span v-else class="over">已结束</span>
         </div>
         <div class="line" style="width: 35%;">
           <span class="text" >08.20-08.27</span>
-          <img src="../../../assets/img/starIcon.png" alt="点亮星灯" >
+          <img src="../../../assets/img/starIcon.png" alt="点亮星灯" v-if="pageIndex == 1">
+          <span v-if="pageIndex > 1" class="over">已结束</span>
         </div>
         <div class="line" style="width: 35%;">
           <span class="text text-828">08.28 <img src="../../../assets/img/fire.png" alt="火爆"></span>
-          <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon">
+          <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon" v-if="pageIndex == 2">
         </div>
         <div class="line" style="width: 15%;"></div>
       </div>
@@ -28,13 +30,26 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'header',
+    props: {
+      fixed: {
+        type: Boolean,
+        default: false
+      },
+      pos: {
+        type: Number,
+        default: 0
+      }
+    },
     data () {
       return {
-        animate: true
+        animate: true,
+        pageIndex: 0
       }
     },
     mounted () {
+      this.$root.eventBus.$on('scrollEnd', (res) => {
+        this.pageIndex = res;
+      })
       //   this.timerG = setInterval(() => {
       //   this.animate = !this.animate;
       // }, 2000)
@@ -47,6 +62,11 @@
 
 <style scoped rel="stylesheet/stylus" lang="stylus">
   @import '../../../assets/css/mixin.styl';
+.fixedLine
+  position absolute!important
+  left 0
+  right 0
+  top: 0
 .header-bg
   height rpx(388)
   background-color #543ad0
@@ -107,6 +127,17 @@
         height 0
         width 0
         border none
+    .over
+      font-size $fontsize-small-s
+      display: inline-block;
+      background: #fe7136;
+      padding: rpx(8) rpx(16);
+      border-radius: 14px;
+      position absolute;
+      right 0;
+      top rpx(-18)
+      transform translateX(50%);
+      z-index 100
     .text-828
       display inline-block;
       padding rpx(8) rpx(28);
