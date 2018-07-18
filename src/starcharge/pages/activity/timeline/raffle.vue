@@ -114,6 +114,15 @@
 
 <style rel="stylesheet/stylus" lang="stylus">
   @import '../../../assets/css/mixin.styl';
+  @font-face
+    font-family 'QuartzMdm';
+    src:  url("../../../assets/fonts/Quartz-Mdm.eot?#iefix") format('embedded-opentype'),
+          url('../../../assets/fonts/Quartz-Mdm.woff') format('woff'),
+          url('../../../assets/fonts/Quartz-Mdm.ttf') format('truetype'),
+          url('../../../assets/fonts/Quartz-Mdm.svg#QuartzMdm') format('svg');
+    font-weight normal
+    font-style normal
+    font-display swap
   .raffle-item
     /* height rpx(368)*/
     background-color #543ad0
@@ -150,6 +159,7 @@
       border-radius 8px
       padding rpx(24)
       line-height 1.4
+      box-shadow: 0px 0 8px 2px rgba(29, 11, 66, 0.5);
       .padBox
         padding rpx(24)
       p
@@ -173,8 +183,8 @@
         padding rpx(20) 0
         .Quartz-Mdm
           font-family 'QuartzMdm'
+          letter-spacing 4px
           font-size $fontsize-big
-          font-weight bold
           text-align center
           padding-bottom rpx(18)
       .hongbao

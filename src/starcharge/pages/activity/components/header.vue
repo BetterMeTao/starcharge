@@ -10,17 +10,17 @@
       <div class="flex-center">
         <div class="line" style="width: 15%;">
           <span class="text" >08.15-08.19</span>
-          <img src="../../../assets/img/hongbao.png" alt="红包活动" v-if="pageIndex == 0">
+          <img src="../../../assets/img/hongbao.png" alt="红包活动" v-if="pageIndex == 0" class="animate-pos " :class="{'animated':animate ,'tada':animate}">
           <span v-else class="over">已结束</span>
         </div>
         <div class="line" style="width: 35%;">
           <span class="text" >08.20-08.27</span>
-          <img src="../../../assets/img/starIcon.png" alt="点亮星灯" v-if="pageIndex == 1">
+          <img src="../../../assets/img/starIcon.png" alt="点亮星灯" v-if="pageIndex == 1" :class="{'animated':animate ,'rubberBand':animate}" class="animate-pos">
           <span v-if="pageIndex > 1" class="over">已结束</span>
         </div>
         <div class="line" style="width: 35%;">
-          <span class="text text-828">08.28 <img src="../../../assets/img/fire.png" alt="火爆"></span>
-          <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon" v-if="pageIndex == 2">
+          <span class="text text-828">08.28 <img src="../../../assets/img/fire.png" alt="火爆" class="animated pulse infinite animate-fire"></span>
+          <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon " v-if="pageIndex == 2" :class="{'animated':animate ,'lightSpeedIn':animate}" >
         </div>
         <div class="line" style="width: 15%;"></div>
       </div>
@@ -49,13 +49,14 @@
     mounted () {
       this.$root.eventBus.$on('scrollEnd', (res) => {
         this.pageIndex = res;
-      })
+      });
       //   this.timerG = setInterval(() => {
       //   this.animate = !this.animate;
       // }, 2000)
     },
     beforeDestroy () {
       // clearInterval(this.timerG)
+      // console.log(this.timerG)
     }
   };
 </script>
@@ -67,6 +68,7 @@
   left 0
   right 0
   top: 0
+  z-index 999
 .header-bg
   height rpx(388)
   background-color #543ad0
@@ -86,6 +88,7 @@
   color #ffffff
   padding rpx(94) rpx(30) 0
   position relative
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
   .text
     font-size $fontsize-small
     position absolute;
@@ -103,6 +106,7 @@
   .car-icon
     width rpx(75)
     top rpx(-22)
+    right rpx(-32)
   .line
     height rpx(8)
     background-color #a421ff
@@ -138,6 +142,10 @@
       top rpx(-18)
       transform translateX(50%);
       z-index 100
+    .animate-pos
+      right rpx(-48)
+    .animate-fire
+      right rpx(-18)
     .text-828
       display inline-block;
       padding rpx(8) rpx(28);
