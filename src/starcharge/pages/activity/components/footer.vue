@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'footer'
+
     };
 </script>
 
@@ -14,7 +14,7 @@
   @import '../../../assets/css/mixin.styl';
   .footer
     padding rpx(30) 0
-    font-size 12px
+    font-size rpx(20)
     color: #ffffff
     position absolute
     bottom rpx(20)
