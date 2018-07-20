@@ -4,7 +4,8 @@ import ApplyInvoice from '../pages/applyInvoice';
 import InvoiceInfo from '../pages/invoiceInfo';
 import NoFound from '../pages/notFound';
 import TimeLine from '../pages/activity/timeline/timeline';
-import FullPageSlide from '../pages/activity/timeline/full-page-slide'
+import FullPageSlide from '../pages/activity/timeline/full-page-slide';
+import Coupons from '../pages/activity/timeline/coupons'
 const proPath = [
   {
     // 一级路由配置
@@ -17,6 +18,11 @@ const proPath = [
         path: '/',
         name: 'full-page-slide',
         component: FullPageSlide
+      },
+      {
+        path: '/coupons',
+        name: 'coupons',
+        component: Coupons
       },
       {
         path: '',

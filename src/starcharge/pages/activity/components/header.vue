@@ -6,7 +6,7 @@
         <div class="gift" :class="{'animated':animate ,'bounce':animate}"><img src="../../../assets/img/liping.png" alt="我的奖品"></div>
       </div>
     </div>
-    <div class="time-line" :class="{'fixedLine':this.fixed }" :style="{top:-this.pos+'px'}">
+    <div class="time-line" :class="{'fixedLine':this.fixed,'box-shadow': this.fixed }" :style="{top:-this.pos+'px'}" v-show="!this.fixed">
       <div class="flex-center">
         <div class="line" style="width: 15%;">
           <span class="text" >08.15-08.19</span>
@@ -46,6 +46,14 @@
         pageIndex: 0
       }
     },
+    watch: {
+      // fixed (newVal, oldVal) {
+      //   if (newVal) {
+      //
+      //   }
+      //   console.log(newVal, oldVal)
+      // }
+    },
     mounted () {
       this.$root.eventBus.$on('scrollEnd', (res) => {
         this.pageIndex = res;
@@ -55,6 +63,7 @@
       // }, 2000)
     },
     beforeDestroy () {
+      this.$root.eventBus.$off('scrollEnd')
       // clearInterval(this.timerG)
       // console.log(this.timerG)
     }
@@ -82,85 +91,5 @@
     img
       width rpx(48)
       display block
-.time-line
-  background-color #654ed5
-  height rpx(140)
-  color #ffffff
-  padding rpx(94) rpx(30) 0
-  position relative
-  box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-  .text
-    font-size $fontsize-small
-    position absolute;
-    right 0;
-    top rpx(-70)
-    transform translateX(50%);
-    white-space nowrap
-  img
-    width rpx(90)
-    position absolute;
-    right 0;
-    top rpx(-36)
-    transform translateX(50%);
-    z-index 100
-  .car-icon
-    width rpx(75)
-    top rpx(-22)
-    right rpx(-32)
-  .line
-    height rpx(8)
-    background-color #a421ff
-    border-radius 8px
-    position relative
-    box-shadow: 1px 3px 9px 0 rgba(49, 10, 108, 0.5)
-    &:after
-      content ''
-      height rpx(22);
-      width rpx(22);
-      display inline-block;
-      background #fff;
-      border-radius 100%;
-      border rpx(6) solid #a421ff;
-      position absolute;
-      right rpx(-17);
-      top 50%;
-      transform translate(0,-50%);
-      z-index 99
-    &:last-child
-      &:after
-        height 0
-        width 0
-        border none
-    .over
-      font-size $fontsize-small-s
-      display: inline-block;
-      background: #fe7136;
-      padding: rpx(8) rpx(16);
-      border-radius: 14px;
-      position absolute;
-      right 0;
-      top rpx(-18)
-      transform translateX(50%);
-      z-index 100
-    .animate-pos
-      right rpx(-48)
-    .animate-fire
-      right rpx(-18)
-    .text-828
-      display inline-block;
-      padding rpx(8) rpx(28);
-      background #fff45c;
-      border-radius 16px;
-      color #543ad0;
-      font-weight bold;
-      font-size $fontsize-lm;
-      top rpx(-75)
-      img
-        width rpx(36)
-        position absolute
-        top rpx(-16)
-    .yaobai
-      transform rotate(15deg)
-      transition 0.6s
-      transform-origin center center
+
 </style>

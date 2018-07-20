@@ -7,9 +7,9 @@ rpx($px)
 prem($rem)
   $rem * html-font-size px
 
-border-top-1px($color)
+border-top-1px($color,$style)
   &:before
-    border-top: 1px solid $color
+    border-top: 1px $style $color
 
 border-right-1px($color)
   &:after

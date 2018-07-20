@@ -1,7 +1,28 @@
 <template>
 <div>
-  <Scroll ref="scroll" :probeType="3" :listenScroll="true" @scroll="fixTimeline">
-      <Header :fixed="fixedLine" :pos="posY"></Header>
+  <!--fixed定位的时候显示timeline模块-->
+  <div class="time-line" :class="{'box-shadow': this.fixedLine}" v-show="this.fixedLine">
+    <div class="flex-center">
+      <div class="line" style="width: 15%;">
+        <span class="text" >08.15-08.19</span>
+        <img src="../../../assets/img/hongbao.png" alt="红包活动" v-if="pageIndex == 0" class="animate-pos " :class="{'animated':animate ,'tada':animate}">
+        <span v-else class="over">已结束</span>
+      </div>
+      <div class="line" style="width: 35%;">
+        <span class="text" >08.20-08.27</span>
+        <img src="../../../assets/img/starIcon.png" alt="点亮星灯" v-if="pageIndex == 1" :class="{'animated':animate ,'rubberBand':animate}" class="animate-pos">
+        <span v-if="pageIndex > 1" class="over">已结束</span>
+      </div>
+      <div class="line" style="width: 35%;">
+        <span class="text text-828">08.28 <img src="../../../assets/img/fire.png" alt="火爆" class="animated pulse infinite animate-fire"></span>
+        <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon " v-if="pageIndex == 2" :class="{'animated':animate ,'lightSpeedIn':animate}" >
+      </div>
+      <div class="line" style="width: 15%;"></div>
+    </div>
+  </div>
+  <!--显示timeline模块的时候，加上scrollH类，重置高度-->
+  <Scroll ref="scroll" :probeType="3" :listenScroll="true" :bounce="false" @scroll="fixTimeline" :class="{scrollH:this.fixedLine}">
+      <Header :fixed="fixedLine" ></Header>
       <div class="raffle-item">
         <p class="title">疯狂828、全民免费充!</p>
         <div class="flower-box">
@@ -72,7 +93,6 @@
   import Footer from '../components/footer'
   import Slide from '../../../components/slide/slide.vue'
   import beiqi from '../../../assets/img/beiqi.png'
-  import list from '../../../components/scroll/list'
   import Scroll from '../../../components/scrollNew/scroll'
   export default {
     name: 'raffle',
@@ -80,6 +100,8 @@
       return {
         fixedLine: false,
         posY: 0,
+        animate: true,
+        pageIndex: 0,
         slideData: [
           [{picUrl: beiqi, text: '北汽EV300'},
           {picUrl: beiqi, text: '充电桩'},
@@ -94,20 +116,18 @@
       Header,
       Slide,
       Footer,
-      list,
       Scroll
     },
     mounted () {
-
+      this.$root.eventBus.$on('scrollEnd', (res) => {
+        this.pageIndex = res;
+      });
     },
     methods: {
       fixTimeline (pos) {
           this.fixedLine = pos.y <= -194;
-          this.posY = pos.y <= -194 ? pos.y : 0
+          // this.posY = pos.y <= -194 ? pos.y : 0
       }
-      // getStyle (index) {
-      //   return `background-image:url(${this.slideData[index].picUrl})`
-      // }
     }
   };
 </script>
@@ -265,6 +285,7 @@
           margin 0 rpx(16)
           p
             padding-bottom rpx(18)
+            text-align center
     .no-pad
       padding 0
   .qipao
@@ -275,4 +296,6 @@
     background-position rpx(-30) rpx(30),left bottom
     padding-bottom rpx(100)
     position relative
+  .scrollH
+    height "calc(100% - %s)" % rpx(140)!important
 </style>
