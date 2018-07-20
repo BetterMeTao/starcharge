@@ -49,7 +49,7 @@
             </div>
             <div class="hongbao">
               <div class="price flex-column-between"><p>充值2388元返</p><p class="num fourNum">2588</p><p>抵用券</p></div>
-              <div class="pay">去充值</div>
+              <div class="pay" @click="gotoPay">去充值</div>
             </div>
           </div>
           <p class="text-tip">（仅当天充值有效，返还抵用券限自营电站使用）</p>
@@ -127,6 +127,9 @@
       fixTimeline (pos) {
           this.fixedLine = pos.y <= -194;
           // this.posY = pos.y <= -194 ? pos.y : 0
+      },
+      gotoPay () {
+        console.log('111111')
       }
     }
   };
