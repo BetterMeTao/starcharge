@@ -47,11 +47,14 @@ const getInvoiceInfo = getMock(MOCK_PATH + '/invoice/fillInvoiceInfoNew');
 const getUserAddress = getMock(MOCK_PATH + '/invoice/userAddressDetail');
 const subInvoiceOrder = postMock(MOCK_PATH + '/invoice/generateInvoiceOrderAndBillApply');
 const getBillInfo = getMock(MOCK_PATH + '/invoice/billInfo');
-
+const getCoupons = postMock(MOCK_PATH + '/voucher/list/qry');
+const getUserInfo = postMock(MOCK_PATH + '/activityInfo/get');
 export {
   getChargeRank,
   getInvoiceInfo,
   getUserAddress,
   subInvoiceOrder,
-  getBillInfo
+  getBillInfo,
+  getCoupons,
+  getUserInfo
 }

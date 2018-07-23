@@ -1,5 +1,6 @@
 <template>
     <div style="background: #543ad0">
+      <Scroll>
         <Header></Header>
         <div class="activity-content">
           <div class="hongbao-box">
@@ -22,17 +23,20 @@
           <img src="../../../assets/img/hongbaofooter.png" alt="" class="hongbao-footer">
           <Footer></Footer>
         </div>
+      </Scroll>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
   import Header from '../components/header'
   import Footer from '../components/footer'
+  import Scroll from '../../../components/scrollNew/scroll'
   export default {
     name: 'bonus',
     components: {
       Header,
-      Footer
+      Footer,
+      Scroll
     }
   };
 </script>
@@ -40,7 +44,7 @@
 <style rel="stylesheet/stylus" lang="stylus">
   @import '../../../assets/css/mixin.styl';
 .activity-content
-  height "calc(100% - %s)" % rpx(528)
+  /*height "calc(100% - %s)" % rpx(608)*/
   /*background-image url("../../../assets/img/moneybg.png")*/
   background-size 100%
   background-color #543ad0
@@ -50,7 +54,7 @@
   box-sizing border-box
   .hongbao-box
     background: #f93662;
-    height: 100%;
+    /*height: 100%;*/
     border-radius: 20px;
     overflow: hidden
   .money-bg
@@ -78,7 +82,7 @@
   .hongbao-center
     position: relative;
     top: rpx(-84);
-    padding 0 rpx(48)
+    padding 0 rpx(48) rpx(74)
     /*background-image url("../../../assets/img/moneybg.png")*/
   h3
     font-size $fontsize-large-xxxx

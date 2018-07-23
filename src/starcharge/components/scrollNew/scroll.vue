@@ -45,9 +45,9 @@
     // import Bubble from '../bubble/bubble.vue'
     import { getRect } from '../../utils/dom'
 
-    const COMPONENT_NAME = 'scroll'
-    const DIRECTION_H = 'horizontal'
-    const DIRECTION_V = 'vertical'
+    const COMPONENT_NAME = 'scroll';
+    const DIRECTION_H = 'horizontal';
+    const DIRECTION_V = 'vertical';
 
     export default {
         name: COMPONENT_NAME,

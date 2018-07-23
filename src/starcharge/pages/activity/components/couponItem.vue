@@ -1,16 +1,31 @@
 <template>
   <div class="coupon-item">
     <div class="top flex-center">
-      <img src="../../../assets/img/shouqi.png" alt="首汽共享汽车" class="logo">
+      <img :src="item.logoUrl" alt="logo" class="logo">
       <div class="text">
-        <h3>gofun优惠券 <span class="status blue-bg">使用中</span></h3>
-        <p><span style="font-weight: bold">· </span>券码：32089765643521679987761111111116</p>
-        <p><span style="font-weight: bold">· </span>gofun APP使用</p>
+        <h3>
+          {{ item.title }}
+          <span class="status orange-bg">
+            <span v-if="item.statusInfo===1">未使用完</span>
+            <span v-if="item.statusInfo===2">已使用</span>
+            <span v-if="item.statusInfo===3">已禁用</span>
+            <span v-if="item.statusInfo===4">使用中</span>
+          </span>
+        </h3>
+        <p class="canSelect" v-if="item.voucherType===2||item.voucherType===3">
+        券码：32089765643521679987761111111116</p>
+        <p>
+        <p v-if="item.voucherType===0||item.voucherType===1">
+          <span style="font-weight: bold">· </span>
+          余额支付时抵扣服务费</p>
+        <p>
+          <span style="font-weight: bold" v-if="item.voucherType===0||item.voucherType===1">· </span>
+          gofun APP使用</p>
       </div>
       <div class="faceVal">
-        <h3 class="price green font-48"><span>￥</span>100</h3>
+        <h3 class="price green font-48"><span>￥</span>{{ item.amount }}</h3>
         <!--<p class="red raffle">抽奖奖品</p>-->
-        <p class=" raffle">总额 500元</p>
+        <p class=" raffle">总额 500 元</p>
       </div>
     </div>
     <div class="bottom">
@@ -21,7 +36,11 @@
 
 <script>
   export default {
-
+    props: {
+      item: {
+        type: Object
+      }
+    }
   };
 </script>
 
@@ -58,6 +77,13 @@
       overflow: hidden;
       white-space: nowrap;
       word-wrap: break-word;
+      .canSelect
+        -webkit-touch-callout:inherit;
+        -webkit-user-select:text;
+        -khtml-user-select:text;
+        -moz-user-select:text;
+        -ms-user-select:text;
+        user-select:text;
       .status
         font-size $fontsize-small
         color: #ffffff

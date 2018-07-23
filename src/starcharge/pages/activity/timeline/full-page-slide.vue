@@ -3,7 +3,6 @@
         <slide ref="slide" :autoPlay="false" :loop="false" :allowEmit="true">
           <Bonus></Bonus>
           <Raffle></Raffle>
-          <Raffle></Raffle>
             <!--<div v-for="(item, index) in items" :key="index">-->
                 <!--<div class="full-page-img-wrapper" :style="getStyle(index)">-->
                     <!--<div v-if="index === items.length -1" class="button-wrapper" @click="handleClick()">-->
@@ -69,6 +68,11 @@
             Slide,
             Bonus,
             Raffle
+        },
+        mounted () {
+            this.$root.eventBus.$on('changePage', (index) => {
+              this.$refs.slide.goToPage(index)
+            })
         },
         methods: {
             handleClick () {

@@ -127,6 +127,9 @@
             next () {
                 this.slide.next()
             },
+            goToPage (index) {
+              this.slide.goToPage(index)
+            },
             init () {
                 clearTimeout(this.timer)
                 this.currentPageIndex = 0

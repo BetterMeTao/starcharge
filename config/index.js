@@ -8,7 +8,7 @@ const proHash = {
   starCharge: {
     name: 'starcharge',
     api: false ? 'http://10.9.35.50:8005/webApi' : 'https://app.starcharge.com/webApi',
-    devApi: 'http://10.9.35.50:8005/webApi',
+    devApi: 'http://10.9.39.128:8004/webApi',
     basePath: 'http://www.me2u.com.cn/starFarm'
   }
 };

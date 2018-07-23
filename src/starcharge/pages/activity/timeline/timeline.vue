@@ -10,11 +10,48 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import Header from '../components/header.vue'
+  import {getUserInfo} from '../../../mock/mock';
+  import functionalTool from '../../../utils/functionTools';
+  import qs from 'qs';
   export default {
     name: 'timeline',
+    data () {
+      return {
+        accountId: '',
+        city: ''
+      }
+    },
     components: {
-      Header
+    },
+    mounted () {
+      this.getBaseUserInfo();
+    },
+    methods: {
+      getUrlParams () {
+        this.accountId = functionalTool.getUrlParam('accountId');
+        this.city = functionalTool.getUrlParam('city');
+      },
+      async getBaseUserInfo () {
+        this.getUrlParams();
+        const dataParam = {
+          accountId: this.accountId,
+          city: this.city
+        };
+        // 处理axios post java后台接受不到参数
+        const params = qs.stringify(dataParam);
+        try {
+          const resData = await getUserInfo(params);
+          if (resData.data.code === '200') {
+            this.$root.userInfo = resData.data.data;
+            console.log('11111111111111')
+          } else {
+            console.log(this.$root.userInfo);
+            console.log('222222222222')
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   }
 </script>

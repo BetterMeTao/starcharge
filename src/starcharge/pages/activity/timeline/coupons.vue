@@ -3,13 +3,7 @@
     <!--<div class="header-content"><img src="../../../assets/img/prev.png" alt="" ><span>我的828</span></div>-->
     <div class="page-content">
       <Scroll>
-        <CouponItem></CouponItem>
-        <CouponItem></CouponItem> <CouponItem></CouponItem>
-        <CouponItem></CouponItem> <CouponItem></CouponItem>
-        <CouponItem></CouponItem> <CouponItem></CouponItem>
-        <CouponItem></CouponItem> <CouponItem></CouponItem>
-        <CouponItem></CouponItem> <CouponItem></CouponItem>
-        <CouponItem></CouponItem>
+        <CouponItem v-for="(item,index) in couponList" :key="index" :item="item"></CouponItem>
       </Scroll>
     </div>
   </div>
@@ -18,11 +12,45 @@
 <script type="text/ecmascript-6">
   import CouponItem from '../components/couponItem'
   import Scroll from '../../../components/scrollNew/scroll'
+  import {getCoupons} from '../../../mock/mock';
+  import qs from 'qs';
   export default {
     name: 'coupons',
+    data () {
+      return {
+        couponList: []
+      }
+    },
     components: {
       CouponItem,
       Scroll
+    },
+    mounted () {
+      this.getCouponList()
+    },
+    methods: {
+      // 获取抵用券列表
+      async getCouponList () {
+        const dataParam = {
+          userId: '',
+          voucherType: null, // 传空查询所有类型的抵用券
+          isUsedOrOverdue: 0,
+          activityType: 1
+        };
+        // 处理axios post java后台接受不到参数
+        const params = qs.stringify(dataParam);
+        try {
+          const resData = await getCoupons(params);
+          if (resData.data.code === '200') {
+            this.couponList = resData.data.data;
+           console.log('11111111111111')
+          } else {
+            console.log('222222222222')
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   };
 </script>

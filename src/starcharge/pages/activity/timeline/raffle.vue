@@ -1,23 +1,23 @@
 <template>
-<div>
+<div style="background: #543ad0">
   <!--fixed定位的时候显示timeline模块-->
   <div class="time-line" :class="{'box-shadow': this.fixedLine}" v-show="this.fixedLine">
     <div class="flex-center">
-      <div class="line" style="width: 15%;">
+      <!--<div class="line" style="width: 15%;">
         <span class="text" >08.15-08.19</span>
         <img src="../../../assets/img/hongbao.png" alt="红包活动" v-if="pageIndex == 0" class="animate-pos " :class="{'animated':animate ,'tada':animate}">
         <span v-else class="over">已结束</span>
-      </div>
-      <div class="line" style="width: 35%;">
+      </div>-->
+      <div class="line" style="width: 33%;">
         <span class="text" >08.20-08.27</span>
-        <img src="../../../assets/img/starIcon.png" alt="点亮星灯" v-if="pageIndex == 1" :class="{'animated':animate ,'rubberBand':animate}" class="animate-pos">
+        <img src="../../../assets/img/starIcon.png" alt="点亮星灯" v-if="pageIndex == 0" :class="{'animated':animate ,'rubberBand':animate}" class="animate-pos">
         <span v-if="pageIndex > 1" class="over">已结束</span>
       </div>
-      <div class="line" style="width: 35%;">
+      <div class="line" style="width: 33%;">
         <span class="text text-828">08.28 <img src="../../../assets/img/fire.png" alt="火爆" class="animated pulse infinite animate-fire"></span>
-        <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon " v-if="pageIndex == 2" :class="{'animated':animate ,'lightSpeedIn':animate}" >
+        <img src="../../../assets/img/car.png" alt="抽奖" class="car-icon " v-if="pageIndex == 1" :class="{'animated':animate ,'lightSpeedIn':animate}" >
       </div>
-      <div class="line" style="width: 15%;"></div>
+      <div class="line" style="width: 33%;"></div>
     </div>
   </div>
   <!--显示timeline模块的时候，加上scrollH类，重置高度-->
@@ -94,6 +94,8 @@
   import Slide from '../../../components/slide/slide.vue'
   import beiqi from '../../../assets/img/beiqi.png'
   import Scroll from '../../../components/scrollNew/scroll'
+  import {getUserInfo} from '../../../mock/mock';
+  import qs from 'qs';
   export default {
     name: 'raffle',
     data () {
@@ -125,11 +127,32 @@
     },
     methods: {
       fixTimeline (pos) {
-          this.fixedLine = pos.y <= -194;
+          this.fixedLine = pos.y <= -234;
           // this.posY = pos.y <= -194 ? pos.y : 0
       },
       gotoPay () {
         console.log('111111')
+      },
+      async getCouponList () {
+        const dataParam = {
+          userId: '',
+          voucherType: null, // 传空查询所有类型的抵用券
+          isUsedOrOverdue: 0,
+          activityType: 1
+        };
+        // 处理axios post java后台接受不到参数
+        const params = qs.stringify(dataParam);
+        try {
+          const resData = await getUserInfo(params);
+          if (resData.data.code === '200') {
+            this.couponList = resData.data.data;
+            console.log('11111111111111')
+          } else {
+            console.log('222222222222')
+          }
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   };

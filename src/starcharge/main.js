@@ -47,6 +47,7 @@ new Vue({
   el: '#app',
   router,
   data: {
+    userInfo: {id: 1},
     eventBus: new Vue()
   },
   render: h => h('router-view')
